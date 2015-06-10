@@ -1,9 +1,9 @@
 ﻿<?php 
-$cfgServer = "localhost";  //IP of your router 
-$cfgPort    = 8085;                //port, 22 if SSH 
-$cfgTimeOut = 10; 
+	$cfgServer = "localhost";  //IP of your router 
+	$cfgPort    = 8085;                //port, 22 if SSH 
+	$cfgTimeOut = 10; 
 
-$usenet = fsockopen($cfgServer, $cfgPort, $errno, $errstr, $cfgTimeOut); 
+	$usenet = fsockopen($cfgServer, $cfgPort, $errno, $errstr, $cfgTimeOut); 
 
 $v1;
 $v2;
