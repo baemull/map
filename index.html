@@ -28,11 +28,28 @@
       <br><br>
       <h1 class="header center orange-text">Car-Pc Projekt</h1>
       <div class="row center">
-        <a href="maps.html" id="download-button" class="btn-large waves-effect waves-light dark-grey">Maps</a>
+        <a href="maps.html" class="btn-large waves-effect waves-light dark-grey">Maps</a>
       </div>
       <div class="row center">
         <a href="camera.html" class="btn-large waves-effect waves-light dark-grey">Kamera</a>
       </div>
+<div class="row center">
+<form action="upload_csv.php" method="post" enctype="multipart/form-data">
+  <form action="#">
+    <div class="file-field input-field">
+      <input class="file-path validate" type="text"/>
+      <div class="btn">
+        <span>Datei</span>
+        <input type="file" name="file" id="file" />
+      </div>
+      <div class="btn">
+        <span>hochladen</span>
+        <input type="submit" name="submit" id="submit" />
+      </div>
+    </div>
+  </form>
+</form>
+  </div>
       <br><br>
 
     </div>
