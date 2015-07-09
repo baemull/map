@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+		<link rel="stylesheet" href="leaflet.css" />
+		<script src="leaflet.js"></script>
+		<script src="jquery-2.1.4.min.js"></script>
+		<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+		<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+		<title>Maps</title>
+	</head>
+	<body>
+		<div id="map" style="height:600px"></div>
+		<div id="coord"></div>
+		<br>
+		<div class="row">
+		<a href="index.html" class="waves-effect waves-light btn-large"><i class="material-icons left">arrow_back</i>Zurück</a>
+	</div>
+		<!-- <button style="height:50px; width:200px" name="btn" onclick="get_udp_gps();"></button> -->
+		<!--<img height="600px" src="http://192.168.43.59:8081/?action=stream" alt="Fehler">-->
+		<script>
+			var map = L.map('map').setView([48.669, 9.2369], 15);
+
+			L.tileLayer('tiles/{z}/{x}/{y}.png', {
+	    		maxZoom: 19,
+	    		detectRetina: true
+
+	    	}).addTo(map);
+
+			var marker = L.marker([48.681316667, 9.223795000]).addTo(map);
+
+			var gps_data=0;
+			var count=0;
+
+			setInterval(function () {get_gps()}, 2000);
+
+
+
+			function on_click()
+			{
+			//map.panTo([48.6784, 9.2282],true);
+			alert("TEST");
+			}
+
+			function get_gps()
+			{
+				$.get("get_gps.php", function(data){
+					gps_data = JSON.parse(data);
+					count++;
+					$("#coord").text('Count: '+ count + ' Time: '+ gps_data["time"] + ' Lat: '+ gps_data["lat"] + ' Lon: '+ gps_data["lon"]);
+					marker.setLatLng(L.latLng([gps_data["lat"], gps_data["lon"]]));
+					map.panTo([gps_data["lat"], gps_data["lon"]],true);
+				});
+			}
+
+			function get_udp_gps()
+			{
+				$.get("get_udp_gps.php", function(data){
+					var udp_data = JSON.parse(data);
+					alert(udp_data);
+				});
+			}
+
+		</script>
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/materialize.js"></script>
+		<script src="js/init.js"></script>
+	</body>
+</html>
