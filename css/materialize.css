@@ -5273,6 +5273,10 @@ nav {
   nav .brand-logo {
     position: absolute;
     color: #fff;
+    height: 64px;
+    width: 128px;
+    background-image: url(icons/gt86.svg);
+
     display: inline-block;
     font-size: 2.1rem;
     padding: 0;
